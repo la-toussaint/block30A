@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import  fetchSingleUser from "../API/ajax-helpers";
-import UserCard from "./UserCard";
-import UserList from "../API/ajax-helpers";
-import selectedUser from "../API/ajax-helpers";
+import {fetchSingleUser} from "./API/ajax-helpers";
+import {ReactCardFlip} from "./components/AllPosts";
+import { RenderSelectedUser } from "./API/ajaxHelpers";
+import ReactCardFlip from "react-card-flip";
 import './App.css'
 
 
@@ -14,52 +14,23 @@ export default function SingleUser() {
 
 useEffect(() => {
     async function getSingleUser() {
+        try {
         const APIResponse = await fetchSingleUser(id);
-        if (APIResponse.success) {
-            setUser(APIResponse.data.user);
-        } else {
-            setError(error.message);
-        }
-    }
-    getSingleUser();
-                }, []);
-
-        return (
-        <div>
-        {error && <p>{error}</p>}
-        {user && <UserCard user={user} />}
-        </div>);
-};
-
-
-export default function SingleUser({ users }) {
-  const { userId } = useParams();
-  const matchedUser = users.find((user) => { 
-    return user.id == userId
-  });
-
-  return (
-  <h1>{matchedUser.name}: {userId}</h1>
-};
-
-
-
-export default function SelectedUser() {
-  const [selectedUser, setSelectedUser] = useState(null)
-
-  return (
-    <>
-      { selectedUser ? (
-        <SelectedUser
-          myId={selectedUserId}
-          pickMyId={setSelectedUserId}
-        />
-      ) : (
-        <UserList chosenId={setSelectedUserId}/> 
-      )}
-
-    </>
-  )
+        
+        if (APIResponse.success) {setUser(APIResponse.data.user)};
+         ))
+}}
+        
+    
+    } else {
+            
+    setError(error.message({user && <ReactCardFlip user={user} />})
+       
+    
+    return 
 }
 
+
+ []);
+}
 }

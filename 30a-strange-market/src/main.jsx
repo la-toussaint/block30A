@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import "./index.css";
 import { configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "./redux";
+import { BrowserRouter } from "react-router-dom";
 
 export const store = configureStore({
   reducer: {
@@ -14,7 +15,11 @@ export const store = configureStore({
 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <React.StrictMode>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>
 );

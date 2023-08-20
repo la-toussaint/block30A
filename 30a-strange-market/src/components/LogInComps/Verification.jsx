@@ -7,8 +7,11 @@ import {
   Button,
   Typography,
 } from "@mui/material";
+import { BASE_URL_LOGIN } from "../../API";
+import { useNavigate } from "react-router-dom";
 
-const VerificationPage = ({ setLoggedIn }) => {
+const VerificationPage = ({ setToken, setMessage }) => {
+  const navigate = useNavigate()
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,11 +23,29 @@ const VerificationPage = ({ setLoggedIn }) => {
   };
   const btnstyle = { margin: "8px 0" };
 
-  function handleLogin() {
-    setLoggedIn(true);
-
-    
-  }
+  const loginUser = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(BASE_URL_LOGIN, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user: {
+            username,
+            password,
+          },
+        }),
+      });
+      const data = await response.json();
+      setToken(data.data.token);
+      setMessage({ text: data.data.message, type: 'success' });
+      navigate("/");
+    } catch (error) {
+      setMessage({ text: data.data.message, type: "error" });
+    }
+  };
 
   return (
     <Grid>
@@ -55,7 +76,7 @@ const VerificationPage = ({ setLoggedIn }) => {
           variant="contained"
           style={btnstyle}
           fullWidth
-          onClick={handleLogin}
+          onClick={loginUser}
         >
           Sign in
         </Button>

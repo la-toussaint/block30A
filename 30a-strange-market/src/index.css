@@ -67,3 +67,205 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.newpost-form {
+
+display: inline;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  background-color: linen;
+  opacity: .95;
+  border: 5px solid lightcoral;
+  font: timesnewroman;
+  font-size: large;
+  font-weight: bolder;
+  font-stretch: wider;
+  line-height: 25pt;
+  color: black;
+  width: 250px;
+  height: 400px;
+  word-wrap: break-word;
+  padding: 25px;
+  border-radius: 10px;
+  margin: 10px 10px;
+
+
+}
+
+.post-card-container {
+
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding-top: 25px;
+  justify-content: space-evenly;
+  max-width: 100%;
+
+
+}
+
+.post-card {
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
+  background-color: linen;
+  opacity: .95;
+  border: 5px solid lightcoral;
+  font: timesnewroman;
+  font-size: 12px;
+  font-weight: bolder;
+  line-height: 14pt;
+  color: black;
+  width: 300px;
+  height: 400px;
+  word-wrap: break-word;
+  padding: 25px;
+  border-radius: 10px;
+  margin: 10px 10px;
+  overflow-y: scroll;
+}
+
+.flip-card-back {
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+    justify-content: left;
+    align-items: flex-start;
+  color: black; 
+  background-color: powderblue;
+}
+
+
+.post-img {
+  height: 200px;
+  width: 250px;
+  padding: 2 px;
+  border: 12 px solid lawngreen;
+  border-radius: 10px;
+
+}
+
+.post-img-back {
+  height: 200px;
+  width: 250px;
+  line-height: 30pt;
+  padding: 2 px;
+  border: 12 px solid lawngreen;
+  border-radius: 10px;
+
+}
+
+.details {
+
+  position: sticky;
+  background-color: #5E9FA3;
+  color: #B55A30;
+  font-size: 12pt;
+  font-weight: bolder;
+  font: timesnewroman;
+  padding: 10px;
+  border-radius: 5px;
+  border: 3px solid #FFFFFF
+}
+
+.details:hover {
+  color: cornflowerblue;
+  background-color: #FFFFFF;
+  border: 2px solid cornflowerblue
+}
+
+.delete {
+  background-color: #FDAC53;
+  color: #FFFFFF;
+  font-size: 12pt;
+  font-weight: bold;
+  font: timesnewroman;
+  padding: 10px;
+  border-radius: 5px;
+  border: 3px solid #FFFFFF
+}
+
+.stash {
+
+  position: sticky;
+  background-color: darkolivegreen;
+  color: antiquewhite;
+  font-size: 12pt;
+  font-weight: bolder;
+  font: timesnewroman;
+  padding: 5px;
+  border-radius: 5px;
+  border: 3px solid #FFFFFF
+}
+
+.flip {
+
+  position: sticky;
+  background-color: goldenrod;
+  color: antiquewhite;
+  font-size: 12pt;
+  font-weight: bolder;
+  font: timesnewroman;
+  padding: 5px;
+  border-radius: 5px;
+  border: 3px solid #FFFFFF
+}
+
+
+.delete-button:hover {
+  color: tomato;
+  background-color: #FFFFFF;
+  border: 2px solid tomato
+}
+
+.nav {
+  top: 0%;
+  background-color: linen;
+  display: flex;
+  flex-direction: row;
+  align-items: right;
+  justify-content: space-evenly;
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 3px solid lightcoral;
+  border-radius: 10px;
+}
+
+.newPlayer-form {
+
+  background-color: lightslategray;
+  border: 3px solid lightcoral;
+  font: times;
+  color: purple;
+  width: 250px;
+  height: 400px;
+  word-wrap: break-word;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 10px 10px;
+}
+
+.reset {
+  bottom: 10px;
+  justify-content: center;
+  background-color: tomato;
+  color: #FFFFFF;
+  border: none;
+  padding: 5px;
+  margin-left: 5px;
+  border-radius: 5px;
+  border: 2px solid #FFFFFF
+}
+
+.submit {
+  bottom: 10px;
+  justify-content: center;
+  background-color: forestgreen;
+  color: #FFFFFF;
+  border: none;
+  padding: 5px;
+  margin-left: 5px;
+  border-radius: 5px;
+  border: 2px solid #FFFFFF
+}
