@@ -15,7 +15,7 @@ export const authReducer = createSlice({
     }),
     setProfile: (state, action) => ({
       ...state,
-      profile: action.payload._id, posts, messages,
+      profile: action.payload
       
     }),
   },

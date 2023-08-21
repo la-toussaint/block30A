@@ -49,7 +49,7 @@ export default function NewPostForm() {
   }
   return (
     <>
-      {submitted && <h1>Your puppy has been added - Good luck!</h1>}
+      {submitted && <h1>Your post has been added - Happy shopping!</h1>}
       <form class="newPost-form" onSubmit={handleSubmit}>
         <h3>Add A New Post Here:</h3>
         <label>
