@@ -15,7 +15,7 @@ export default function NavBar() {
       <Link to="/register">Register</Link>
       <Link to="/login">Log In</Link>
 
-      <Link to="/">Profile</Link>
+      <Link to="/user-profile">Profile</Link>
       
 
       <Link to="/new-post-form">New Post</Link>
