@@ -61,8 +61,8 @@ export default function AllCards() {
               )}
             </div>
             <div className="flip-card-back">
-              <p>Post Name: {post.author.username}</p>
-              <p>Post Name Id: {post.author._id}</p>
+              <p>Post Author Id: {post.author._id}</p>
+              <p>Post Author Username: {post.author.username}</p>
               <p>Post Cohort: {post.cohort}</p>
               <p>Post Created At: {post.createdAt}</p>
               <p>Description: {post.description}</p>
@@ -71,9 +71,9 @@ export default function AllCards() {
               <p>Post Price: {post.price}</p>
               <p>Post Title: {post.title}</p>
               <p>Delivery: {post.willDeliver}</p>
-              <p>Post Name: {post._id}</p>
-              <p>Post Name: {post.createdAt}</p>
-              <p>Post Name: {post.updatedAt}</p>
+              <p>Post Id: {post._id}</p>
+              <p>Post Created At: {post.createdAt}</p>
+              <p>Post Updated At: {post.updatedAt}</p>
               <button className="flip" onClick={() => handleClick(post.id)}>
                 Flip over
               </button>

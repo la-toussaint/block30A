@@ -56,6 +56,7 @@ export default function App() {
           element={<VerificationPage setMessage={setMessage} />}
         />
         <Route path="/register" element={<SignUpForm users={users} />} />
+        <Route path="/register" element={<SingleProfile users={users} />} />
       </Routes>
     </>
   );
