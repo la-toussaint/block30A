@@ -129,7 +129,6 @@ display: inline;
   display: flex;
   flex-direction: column;
   word-wrap: break-word;
-    justify-content: left;
     align-items: flex-start;
   color: black; 
   background-color: powderblue;

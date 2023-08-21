@@ -1,6 +1,6 @@
 import { useState, react } from "react";
 import { BASE_URL_USER_ME, BASE_URL_POSTS, BASE_URL_USERS } from "./index";
-
+import { useSelector } from "react-redux";
 export const fetchAllUsers = async () => {
   try {
     // write a fetch request for:
@@ -22,6 +22,22 @@ export const fetchAllPosts = async () => {
     const result = await response.json();
     console.log(result.data.posts);
     return result.data.posts;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchProfile = async (token) => {
+  try {
+    const response = await fetch(BASE_URL_USER_ME, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const result = await response.json();
+    return result.data;
   } catch (error) {
     console.log(error);
   }

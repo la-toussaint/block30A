@@ -8,47 +8,55 @@ import AllCards from "./components/AllCards";
 // @reduxjs/toolkit
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-
-// import { SingleUser } from "./API/ajax-helpers";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchProfile } from "./API/ajax-helpers";
 import NavBar from "./components/NavBar";
-
-const Home = ({ message, onMsgClose }) => {
-  return (
-    <>
-      <AllCards />
-      {message && <Messages message={message} onClose={onMsgClose} />}
-    </>
-  );
-};
+import { setProfile } from "./redux";
 export default function App() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const profile = useSelector((state) => state.auth.profile);
+  const token = useSelector((state) => state.auth.token);
+
+  console.log("profile: ", profile);
   const [users, setUsers] = React.useState([
     { id: 1, name: "Name1" },
     { id: 2, name: "Name2" },
     { id: 3, name: "Name3" },
   ]);
 
-  const [token, setToken] = React.useState(null);
   const [message, setMessage] = React.useState(null);
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    if (isLoggedIn) {
+      fetchProfile(token).then((data) => {
+        dispatch(setProfile(data));
+      });
+    }
+  }, [isLoggedIn]);
 
-  return;
-  <>
-    <NavBar />
-    <Routes>
-      <Route
-        path="/"
-        element={<Home message={message} onMsgClose={setMessage} />}
-      />
-      <Route path="/new-post-form" element={<NewPost />} />
-      {/* </AuthRoute> */}
-      <Route path="/all-cards" element={<AllCards />} />
-      {/* <Route path="/users/:userId" element={<RenderSelectedUser users={users} />} /> */}
-      <Route
-        path="/login"
-        element={
-          <VerificationPage setToken={setToken} setMessage={setMessage} />
-        }
-      />
-      <Route path="/register" element={<SignUpForm users={users} />} />
-    </Routes>
-  </>;
+  return (
+    <>
+      <NavBar />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <AllCards />
+              {message && <Messages message={message} onClose={setMessage} />}
+            </>
+          }
+        />
+        <Route path="/new-post-form" element={<NewPost />} />
+        {/* </AuthRoute> */}
+        <Route path="/all-cards" element={<AllCards />} />
+        {/* <Route path="/users/:userId" element={<RenderSelectedUser users={users} />} /> */}
+        <Route
+          path="/login"
+          element={<VerificationPage setMessage={setMessage} />}
+        />
+        <Route path="/register" element={<SignUpForm users={users} />} />
+      </Routes>
+    </>
+  );
 }

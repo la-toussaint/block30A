@@ -9,9 +9,11 @@ import {
 } from "@mui/material";
 import { BASE_URL_LOGIN } from "../../API";
 import { useNavigate } from "react-router-dom";
-
-const VerificationPage = ({ setToken, setMessage }) => {
-  const navigate = useNavigate()
+import { useDispatch } from "react-redux";
+import { setToken } from "../../redux";
+const VerificationPage = ({ setMessage }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -39,8 +41,8 @@ const VerificationPage = ({ setToken, setMessage }) => {
         }),
       });
       const data = await response.json();
-      setToken(data.data.token);
-      setMessage({ text: data.data.message, type: 'success' });
+      dispatch(setToken(data.data.token));
+      setMessage({ text: data.data.message, type: "success" });
       navigate("/");
     } catch (error) {
       setMessage({ text: data.data.message, type: "error" });
