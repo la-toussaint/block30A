@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { makePost } from "../API/ajax-helpers";
+import { useSelector } from "react-redux";
 
 export default function NewPostForm() {
+  const token = useSelector((state) => state.auth.token);
   const [postAuthorUsername, setPostAuthorUsername] = useState("");
   const [postAuthor_Id, setPostAuthor_Id] = useState("");
   const [postCohort, setPostCohort] = useState("");
@@ -10,12 +13,12 @@ export default function NewPostForm() {
   const [postMessage, setPostMessage] = useState("");
   const [postPrice, setPostPrice] = useState("");
   const [postTitle, setPostTitle] = useState("");
-  const [postWillDeliver, setPostWillDeliver] = useState("");
+  const [postWillDeliver, setPostWillDeliver] = useState(false);
   const [post_Id, setPost_Id] = useState("");
   const [postUpdatedAt, setPostUpdatedAt] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     // Prevent the browser from reloading the page
     e.preventDefault();
 
@@ -25,10 +28,18 @@ export default function NewPostForm() {
       postAuthor_Id,
       postCohort,
       postTitle,
+      postDescription,
       postPrice,
+      postWillDeliver,
     });
-    // authenticate();
-    // resetForm();
+    await makePost(
+      token,
+      postTitle,
+      postDescription,
+      postPrice,
+      postWillDeliver
+    );
+    resetForm();
     setSubmitted(true);
   }
 
@@ -42,7 +53,7 @@ export default function NewPostForm() {
     setPostMessage("");
     setPostPrice("");
     setPostTitle("");
-    setPostWillDeliver("");
+    setPostWillDeliver(false);
     setPost_Id("");
     setPostUpdatedAt("");
     setSubmitted(false);
@@ -50,57 +61,26 @@ export default function NewPostForm() {
   return (
     <>
       {submitted && <h1>Your post has been added - Happy shopping!</h1>}
-      <form class="newPost-form" onSubmit={handleSubmit}>
+      <form className="newPost-form" onSubmit={handleSubmit}>
         <h3>Add A New Post Here:</h3>
-        <label>
-          Author Username:{" "}
-          <input
-            value={postAuthorUsername}
-            onChange={(e) => {
-              setPostAuthorUsername(e.target.value);
-            }}
-          />
-        </label>
-        <hr />
-        <label>
-          Author Id:{" "}
-          <input
-            value={postAuthor_Id}
-            onChange={(e) => {
-              setPostAuthor_Id(e.target.value);
-            }}
-          />
-        </label>
-        <hr />
         <label>
           Post Message:{" "}
           <input
             value={postMessage}
-            onChange={() => {
-              SetPostMessage(e.target.value);
+            onChange={(e) => {
+              setPostMessage(e.target.value);
             }}
           />
         </label>
         <hr />
-        <label>
-          Post Cohort:{" "}
-          <label>
-            <input
-              value={postCohort}
-              onChange={() => {
-                setStatus(e.target.value);
-              }}
-            />
-          </label>
-        </label>
-        <hr />
+
         <label>
           Post Price:{" "}
           <label>
             <input
               value={postPrice}
-              onChange={() => {
-                setImage(e.target.value);
+              onChange={(e) => {
+                setPostPrice(e.target.value);
               }}
             />
           </label>
@@ -111,8 +91,8 @@ export default function NewPostForm() {
           <label>
             <input
               value={postTitle}
-              onChange={() => {
-                setImage(e.target.value);
+              onChange={(e) => {
+                setPostTitle(e.target.value);
               }}
             />
           </label>
@@ -120,82 +100,37 @@ export default function NewPostForm() {
         <hr />
         <label>
           Post Description:{" "}
-          <label>
-            <input
-              value={postDescription}
-              onChange={() => {
-                setImage(e.target.value);
-              }}
-            />
-          </label>
+          <input
+            value={postDescription}
+            onChange={(e) => {
+              setPostDescription(e.target.value);
+            }}
+          />
         </label>
         <hr />
-        <label>
-          Post Location:{" "}
+        <div>
           <label>
+            Will Deliver:{" "}
             <input
-              value={postLocation}
-              onChange={() => {
-                setImage(e.target.value);
-              }}
-            />
-          </label>
-        </label>
-        <hr />
-        <label>
-          Will Deliver:{" "}
-          <label>
-            <input
+              type="checkbox"
               value={postWillDeliver}
-              onChange={() => {
-                setImage(e.target.value);
+              onChange={(e) => {
+                setPostWillDeliver(e.target.value);
               }}
             />
           </label>
-        </label>
+        </div>
         <hr />
-        <label>
-          Post Created At:{""}
-          <label>
-            <input
-              value={postCreatedAt}
-              onChange={() => {
-                setImage(e.target.value);
-              }}
-            />
-          </label>
-        </label>
-        <hr />
-        <label>
-          Post Updated At:{""}
-          <label>
-            <input
-              value={postUpdatedAt}
-              onChange={() => {
-                setImage(e.target.value);
-              }}
-            />
-          </label>
-        </label>
-        <hr />
-        <label>
-          Post Id:{" "}
-          <label>
-            <input
-              value={post_Id}
-              onChange={() => {
-                setImage(e.target.value);
-              }}
-            />
-          </label>
-        </label>
-        <hr />{" "}
-        <button class="reset" type="reset" onClick={resetForm}>
-          Reset form
-        </button>
-        <button class="submit" type="submit">
-          Submit form
-        </button>
+        <div>
+          <button className="reset" type="reset" onClick={resetForm}>
+            Reset form
+          </button>
+        </div>
+        <div>
+          <button className="submit" type="submit">
+            Submit form
+          </button>
+        </div>
       </form>
     </>
   );

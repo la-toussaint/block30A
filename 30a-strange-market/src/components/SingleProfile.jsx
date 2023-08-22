@@ -7,7 +7,7 @@ export default function ProfileLog() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const profile = useSelector((state) => state.auth.profile);
   const token = useSelector((state) => state.auth.token);
-
+  const [isOpen, setIsOpen] = useState(false);
   console.log(setProfile(profile));
   const [users, setUsers] = React.useState([
     { id: 1, name: "Name1" },
@@ -15,40 +15,40 @@ export default function ProfileLog() {
     { id: 3, name: "Name3" },
   ]);
 
-  const handleToggleDropdown = () => {
-    const dispatch = useDispatch();
-    React.useEffect(() => {
-      if (isLoggedIn) {
-        fetchProfile(token).then((data) => {
-          dispatch(setProfile(data));
-        });
-      }
-    }, [isLoggedIn]);
-    return (
-      <div className="user-profile-container">
-        <button className="profile-log-button" onClick={handleToggleDropdown}>
-          {isOpen ? "Hide Logs" : "Show Logs"}
-          console.log(ShowLogs)
-        </button>
-        {isOpen && (
-          <div className="profile-log-card" key={profile.setProfile}>
-            {profile.map((profile, setProfile) => (
-              <ul className="profile-log-list">
-                {profile.map((profile, type) => (
-                  <li className="profile-log-item" key={setProfile}>
-                    Action: {profile.action}, Posts: {post.posts}, Messages:{" "}
-                    {post.messages.Number}, Username: {post.author.username},
-                    User Id: {post.author._id}, User Name:{" "}
-                    {post.author.username}, User Cohort: {post.author.cohort},
-                  </li>
-                ))}
-              </ul>
-            ))}{" "}
-          </div>
-        )}
-      </div>
-    );
-  };
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    console.log("isLoggedIn", isLoggedIn);
+    if (isLoggedIn) {
+      fetchProfile(token).then((data) => {
+        console.log("foo", data);
+        dispatch(setProfile(data));
+      });
+    }
+  }, [isLoggedIn]);
+
+  const handleToggleDropdown = () => {};
+
+  return (
+    <div className="user-profile-container">
+      <button className="profile-log-button" onClick={handleToggleDropdown}>
+        {isOpen ? "Hide Logs" : "Show Logs"}
+      </button>
+      {isOpen && (
+        <div className="profile-log-card">
+          <ul className="profile-log-list">
+            {profile?.posts?.map((post) => (
+              <li className="profile-log-item" key={post.id}>
+                Posts: {post.posts}, Location: {post.location}, Messages:
+                {post.messages.Number}, Username: {post.author.username}, User
+                Id: {post.author._id}, User Cohort: {post.cohort},Will Deliver:
+                {post.willdeliver},Active{post.active},
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 }
 
 // <ReactCardFlip
@@ -59,7 +59,7 @@ export default function ProfileLog() {
 //   <div className="flip-card-front">
 //     <div className="front-card-profile">
 //       <div>Posts: {post.posts}</div>,
-//       <div>Messages: {post.messages.Number}</div>,
+//       <div>Messages: {post.messages}</div>,
 //       <div>Username: {post.author.username}</div>,
 //       <div>User Id: {post.author._id}</div>,
 //       <div>User Name: {post.author.username}</div>,

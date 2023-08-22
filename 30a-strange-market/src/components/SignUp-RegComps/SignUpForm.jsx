@@ -5,7 +5,6 @@ const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
 export const BASE_URL_USER_REG = `${BASE_URL}/users/register`;
 
 export default function SignUpForm({ setToken }) {
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -14,8 +13,7 @@ export default function SignUpForm({ setToken }) {
   const registerUser = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(BASE_URL_USER_REG, 
-      {
+      const response = await fetch(BASE_URL_USER_REG, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -41,7 +39,7 @@ export default function SignUpForm({ setToken }) {
       <h2>Sign Up!</h2>
       {error && <p>{error}</p>}
       {success && <p>{success}</p>}
-      <form class="sign-up-form" onSubmit={registerUser}>
+      <form className="sign-up-form" onSubmit={registerUser}>
         <label>
           Username: {""} <br />
           <input

@@ -1,6 +1,30 @@
 import { useState, react } from "react";
 import { BASE_URL_USER_ME, BASE_URL_POSTS, BASE_URL_USERS } from "./index";
 import { useSelector } from "react-redux";
+
+export default function CreatePostForm({ posts, setPosts }) {
+  const [name, setName] = useState("");
+  const [breed, setBreed] = useState("");
+  const [error, setError] = useState(null);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const APIData = await createPost(name, breed);
+    if (APIData.success) {
+      console.log("New Post: ", APIData.data.newPost);
+
+      // Resetting all posts manually
+      const newPostsList = [...posts, APIData.data.newPost];
+      setPosts(newPostsList);
+
+      setName("");
+      setBreed("");
+    } else {
+      setError(APIData.error.message);
+    }
+  }
+}
+
 export const fetchAllUsers = async () => {
   try {
     // write a fetch request for:
@@ -106,4 +130,29 @@ function RenderSelectedUser({ pickMyId, myId }) {
       </p>
     </div>
   );
+}
+
+export async function makePost(token, title, description, price, willDeliver) {
+  try {
+    const response = await fetch(BASE_URL_POSTS, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        post: {
+          title: title,
+          description: description,
+          price: price,
+          willDeliver: willDeliver,
+        },
+      }),
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
 }

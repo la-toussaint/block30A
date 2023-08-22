@@ -5,9 +5,9 @@ import VerificationPage from "./components/LogInComps/Verification";
 import { Messages } from "./components/Messages";
 import NewPost from "./components/NewPost";
 import AllCards from "./components/AllCards";
-import SingleProfile from "./components/SingleProfile"
+import SingleProfile from "./components/SingleProfile";
 // @reduxjs/toolkit
-import "./App.css";
+import "./index.css";
 import { Routes, Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProfile } from "./API/ajax-helpers";
@@ -57,7 +57,7 @@ export default function App() {
           element={<VerificationPage setMessage={setMessage} />}
         />
         <Route path="/register" element={<SignUpForm users={users} />} />
-        <Route path="/user-profile" element={<SingleProfile setProfile={setProfile} />} />
+        <Route path="/user-profile" element={<SingleProfile />} />
       </Routes>
     </>
   );

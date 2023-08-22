@@ -20,7 +20,7 @@ describe("Testing on/off", () => {
   });
 });
 
-describe("Testing reducers, specifically profile")
+describe("Testing reducers");
 test("reducers", () => {
   let state;
   state = reducers(
@@ -31,12 +31,12 @@ test("reducers", () => {
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGUwMjk0Y2Q3YTIxNjAwMTQzNTQ1ZTUiLCJ1c2VybmFtZSI6ImxvbG9tYXkiLCJpYXQiOjE2OTI2MzIzNjF9.ulQzKlGp-EJm-csbOilTN-r6KUhBo_7bsLiOui89SXI",
     }
   );
-  expect(state).toEqual({
+  expect(state).toBeEqual({
     auth: {
       token:
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGUwMjk0Y2Q3YTIxNjAwMTQzNTQ1ZTUiLCJ1c2VybmFtZSI6ImxvbG9tYXkiLCJpYXQiOjE2OTI2MzIzNjF9.ulQzKlGp-EJm-csbOilTN-r6KUhBo_7bsLiOui89SXI",
       isLoggedIn: true,
-      profile: !null,
+      profile: null,
     },
   });
 });
