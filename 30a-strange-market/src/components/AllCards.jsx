@@ -46,7 +46,7 @@ export default function AllCards() {
                 {isLoggedIn && (
                   <button
                     className="delete"
-                    onClick={() => deletePost(post.id)}
+                    onClick={() => deletePost(post._id)}
                   >
                     Delete post
                   </button>
