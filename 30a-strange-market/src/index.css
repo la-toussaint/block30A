@@ -202,5 +202,23 @@
   padding: 5px;
   margin-left: 5px;
   border-radius: 5px;
-  border: 2px solid #ffffff;
+  border: 3px solid #ffffff;
+}
+.sign-up-form {
+  display: inline-table;
+  justify-content: stretch;
+  background-color: #0072b5;
+  opacity: 0.95;
+  border: 4px solid midnightblue;
+  margin-left: 33%;
+  margin-top: 100px;
+  font: timesnewroman;
+  font-size: 12pt;
+  font-weight: bolder;
+  line-height: 30pt;
+  color: antiquewhite;
+  flex-wrap: wrap;
+  padding: 25px;
+  border-radius: 10px;
+  overflow-y: scroll;
 }

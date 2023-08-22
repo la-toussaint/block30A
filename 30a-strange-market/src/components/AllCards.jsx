@@ -5,23 +5,6 @@ import ReactCardFlip from "react-card-flip";
 import { useSelector } from "react-redux";
 import SearchBar from "./SearchBar";
 
-// function PostListCards({ post }) {
-//   " ";
-// }
-// {
-//   <div class="stash">
-//     return (<h3>{post.name}</h3>
-//     <button
-//       class="stash faves"
-//       onClick={() => {
-//         navigate(`/${post.id}`);
-//       }}
-//     >
-//       See Your Posts Here!
-//     </button>
-//     );
-//   </div>;
-// }
 export default function AllCards() {
   const [posts, postList] = useState([]);
   const [error, setError] = useState(null);

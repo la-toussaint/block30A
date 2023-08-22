@@ -61,7 +61,9 @@ export default function SignUpForm({ setToken }) {
         <button type="submit">Submit</button>
       </form>
       {!(username.length >= 8) && (
-        <p style={{ color: "black" }}>No more than 8 characters</p>
+        <p style={{ color: "white", backgroundColor: "#0072b5" }}>
+          No more than an 8-character password please.
+        </p>
       )}
     </>
   );
