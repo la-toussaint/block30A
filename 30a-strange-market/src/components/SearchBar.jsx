@@ -1,58 +1,45 @@
-import { useEffect, useState } from "react";
-import { BASE_URL_POSTS } from "../API";
+// import { useState, useEffect } from "react";
+import { fetchAllPosts } from "../api";
+import PostListName from "./PostListName";
+import CreatePostForm from "./CreatePostForm";
 
-const SearchBar = ({ onSearch }) => {
-  const [value, setValue] = useState("");
+export default function AllPosts() {
+  const [posts, setPosts] = useState([]);
+  const [error, setError] = useState(null);
+  const [searchParam, setSearchParam] = useState("");
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(BASE_URL_POSTS);
-        const result = await response.json();
-      } catch (error) {
-        console.error(error);
-
-        const posts = result.data.posts.filter(
-          (post) => {
-            if (value === "") {
-              return true;
-            }
-            return (
-              post.title.toLowerCase().includes(value.toLowerCase()) ||
-                post.description.toLowerCase().includes(value.toLowerCase()) ||
-                post.username.toLowerCase().includes(value.toLowerCase()) ||
-                post.userId.toLowerCase().includes(value.toLowerCase()) ||
-                post.cohort.toLowerCase().includes(value.toLowerCase()) ||
-                post.createdAt.toLowerCase().includes(value.toLowerCase()) ||
-                post.location.toLowerCase().includes(value.toLowerCase()) ||
-                post.message.toLowerCase().includes(value.toLowerCase()) ||
-                post.price.toLowerCase().includes(value.toLowerCase()) ||
-                post.willDeliver.toLowerCase().includes(value.toLowerCase()) ||
-                post.id.toLowerCase().includes(value.toLowerCase()) ||
-                post.updatedAt.toLowerCase().includes(value.toLowerCase()),
-              onSearch(posts)
-            );
-          },
-          [value]
-        );
+    async function getAllPosts() {
+      const response = await fetchAllPosts();
+      if (APIResponse.success) {
+        setPosts(APIResponse.data.posts);
+      } else {
+        setError(APIResponse.error.message);
       }
-      fetchData();
-    };
-  });
+    }
+    getAllPosts();
+  }, []);
 
+  const postsToDisplay = searchParam
+    ? posts.filter((post) => post.name.toLowerCase().includes(searchParam))
+    : posts;
   return (
-    <div className="search-bar">
-      <input
-        type="text"
-        className="search-input"
-        placeholder="Search data..."
-        value={value}
-        onChange={(e) => {
-          setValue(e.target.value);
-        }}
-      />
+    <div>
+      <div className="search-bar">
+        <label>
+          Search:{" "}
+          <input
+            type="text"
+            placeholder="search"
+            onChange={(e) => setSearchParam(e.target.value.toLowerCase())}
+          />
+        </label>
+      </div>
+      <CreatePostForm className="search-bar-form" posts={posts} setPosts={setPosts} />
+      {error && <p>{error}</p>}
+      {postsToDisplay.map((post) => {
+        return <PostListName key={post.id} post={post} />;
+      })}
     </div>
   );
-};
-
-export default SearchBar;
+}

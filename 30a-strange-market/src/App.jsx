@@ -13,6 +13,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchProfile } from "./API/ajax-helpers";
 import NavBar from "./components/NavBar";
 import { setProfile } from "./redux";
+
+
+
 export default function App() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const profile = useSelector((state) => state.auth.profile);

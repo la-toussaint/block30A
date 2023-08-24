@@ -10,7 +10,7 @@ Signed in
 export default function NavBar() {
   return (
     <div className="nav">
-      <Link to="/">Home</Link>
+      <Link to="/all-cards">Home</Link>
       <Link to="/all-cards">All Posts</Link>
       <Link to="/register">Register</Link>
       <Link to="/login">Log In</Link>

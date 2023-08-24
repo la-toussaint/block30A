@@ -10,7 +10,7 @@ export const Messages = ({ message = null, onClose }) => {
   return (
     <Snackbar
       open={Boolean(message)}
-      autoHideDuration={6000}
+      autoHideDuration={12000}
       onClose={handleClose}
     >
       <Alert severity={message.type} onClose={handleClose}>

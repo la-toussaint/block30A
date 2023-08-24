@@ -71,24 +71,7 @@
   overflow-y: scroll;
 }
 
-.newPost-form {
-  display: inline-table;
-  justify-content: stretch;
-  background-color: #f7cac9;
-  opacity: 0.95;
-  border: 3px solid midnightblue;
-  margin-left: 33%;
-  margin-top: 100px;
-  font: timesnewroman;
-  font-size: 10pt;
-  font-weight: bolder;
-  line-height: 30pt;
-  color: midnightblue;
-  flex-wrap: wrap;
-  padding: 25px;
-  border-radius: 10px;
-  overflow-y: scroll;
-}
+
 
 .flip-card-back {
   word-wrap: break-word;
@@ -97,22 +80,23 @@
   background-color: #0072b5;
 }
 
-.post-img {
+/* .post-img {
   height: 200px;
   width: 250px;
   padding: 2 px;
   border: 12 px solid lawngreen;
   border-radius: 10px;
-}
+} */
 
-.post-img-back {
+/* .post-img-back {
   height: 200px;
   width: 250px;
   line-height: 30pt;
   padding: 2 px;
   border: 12 px solid lawngreen;
   border-radius: 10px;
-}
+} */
+
 
 .details {
   position: sticky-bottom;
@@ -132,6 +116,10 @@
   border: 2px solid #ff6f61;
 }
 
+
+
+
+
 .delete {
   background-color: #fdac53;
   color: #ffffff;
@@ -142,21 +130,13 @@
   border-radius: 5px;
   border: 3px solid #ffffff;
 }
-
-.profile-log-button {
-  position: fixed;
-  justify-content: center;
-  bottom: 50px;
-  background-color: #ff69b4;
-  color: antiquewhite;
-  font: timesnewroman;
-  font-size: 16pt;
-  font-weight: bolder;
-  font: timesnewroman;
-  padding: 10px;
-  border-radius: 15px;
-  border: 5px solid #ffffff;
+  
+.delete-button:hover {
+  color: tomato;
+  background-color: #ffffff;
+  border: 2px solid tomato;
 }
+
 
 .flip {
   position: sticky;
@@ -169,41 +149,15 @@
   border-radius: 5px;
   border: 3px solid #ffffff;
 }
+
 .flip:hover {
   color: #ff69b4;
   background-color: #ffffff;
   border: 2px solid #ff69b4;
 }
 
-.delete-button:hover {
-  color: tomato;
-  background-color: #ffffff;
-  border: 2px solid tomato;
-}
 
-.reset {
-  bottom: 10px;
-  justify-content: center;
-  background-color: #ff69b4;
-  color: #ffffff;
-  border: none;
-  padding: 7px;
-  margin-left: 5px;
-  border-radius: 5px;
-  border: 2px solid #ffffff;
-}
 
-.submit {
-  bottom: 10px;
-  justify-content: center;
-  background-color: #fdac53;
-  color: #ffffff;
-  border: none;
-  padding: 5px;
-  margin-left: 5px;
-  border-radius: 5px;
-  border: 3px solid #ffffff;
-}
 .sign-up-form {
   display: inline-table;
   justify-content: stretch;
@@ -223,24 +177,79 @@
   overflow-y: scroll;
 }
 
+.newPost-form {
+  display: inline-table;
+  justify-content: stretch;
+  background-color: #f7cac9;
+  opacity: 0.95;
+  border: 3px solid midnightblue;
+  margin-left: 33%;
+  margin-top: 100px;
+  font: timesnewroman;
+  font-size: 10pt;
+  font-weight: bolder;
+  line-height: 30pt;
+  color: midnightblue;
+  flex-wrap: wrap;
+  padding: 25px;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+
+.submit {
+  bottom: 10px;
+  justify-content: center;
+  background-color: #fdac53;
+  color: #ffffff;
+  border: none;
+  padding: 5px;
+  margin-left: 5px;
+  border-radius: 5px;
+  border: 3px solid #ffffff;
+}
+.reset {
+  bottom: 10px;
+  justify-content: center;
+  background-color: #ff69b4;
+  color: #ffffff;
+  border: none;
+  padding: 7px;
+  margin-left: 5px;
+  border-radius: 5px;
+  border: 2px solid #ffffff;
+}
+
 .profile-log-item {
 
-    display: inline-table;
-    justify-content: stretch;
-    background-color: #0072b5;
-    opacity: 0.95;
-    border: 4px solid midnightblue;
-    margin-left: 33%;
-    margin-top: 100px;
-    font: timesnewroman;
-    font-size: 12pt;
-    font-weight: bolder;
-    line-height: 30pt;
-    color: antiquewhite;
-    flex-wrap: wrap;
-    padding: 25px;
-    border-radius: 10px;
-    overflow-y: scroll;
-  }
+  display: inline-table;
+  justify-content: stretch;
+  background-color: #0072b5;
+  opacity: 0.95;
+  border: 4px solid midnightblue;
+  margin-left: 33%;
+  margin-top: 100px;
+  font: timesnewroman;
+  font-size: 12pt;
+  font-weight: bolder;
+  line-height: 30pt;
+  color: antiquewhite;
+  flex-wrap: wrap;
+  padding: 25px;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
 
-
+.profile-log-button {
+  position: fixed;
+  justify-content: center;
+  bottom: 50px;
+  background-color: #ff69b4;
+  color: antiquewhite;
+  font: timesnewroman;
+  font-size: 16pt;
+  font-weight: bolder;
+  font: timesnewroman;
+  padding: 10px;
+  border-radius: 15px;
+  border: 5px solid #ffffff;
+}

@@ -1,29 +1,34 @@
 import { useState, react } from "react";
-import { BASE_URL_USER_ME, BASE_URL_POSTS, BASE_URL_USERS } from "./index";
+import {
+  BASE_URL_USER_ME,
+  BASE_URL_POSTS,
+  BASE_URL_USERS,
+  BASE_URL_DELET,
+} from ".API/index";
 import { useSelector } from "react-redux";
 
-export default function CreatePostForm({ posts, setPosts }) {
-  const [name, setName] = useState("");
-  const [breed, setBreed] = useState("");
-  const [error, setError] = useState(null);
+// export default function CreatePostForm({ posts, setPosts }) {
+//   const [name, setName] = useState("");
+//   const [breed, setBreed] = useState("");
+//   const [error, setError] = useState(null);
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const APIData = await createPost(name, breed);
-    if (APIData.success) {
-      console.log("New Post: ", APIData.data.newPost);
+//   async function handleSubmit(e) {
+//     e.preventDefault();
+//     const APIData = await createPost(name, breed);
+//     if (APIData.success) {
+//       console.log("New Post: ", APIData.data.newPost);
 
-      // Resetting all posts manually
-      const newPostsList = [...posts, APIData.data.newPost];
-      setPosts(newPostsList);
+//       // Resetting all posts manually
+//       const newPostsList = [...posts, APIData.data.newPost];
+//       setPosts(newPostsList);
 
-      setName("");
-      setBreed("");
-    } else {
-      setError(APIData.error.message);
-    }
-  }
-}
+//       setName("");
+//       setBreed("");
+//     } else {
+//       setError(APIData.error.message);
+//     }
+//   }
+// }
 
 export const fetchAllUsers = async () => {
   try {
@@ -67,13 +72,20 @@ export const fetchProfile = async (token) => {
   }
 };
 
-export const deletePost = async (id) => {
+export const deletePost = async (token, _id) => {
   try {
-    const response = await fetch(`(BASE_URL_POSTS` / `${id}`, {
+    const response = await fetch(BASE_URL_DELET, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
-  } catch (error) {
-    console.error(error);
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.error(err);
   }
 };
 
@@ -90,8 +102,6 @@ function RenderSelectedUser({ pickMyId, myId }) {
             <p>${user.password}</p>
             <p>${user.token}</p>
             ${user.posts}</p>
-
-
 
         `;
       usersContainer.appendChild(userCard);
