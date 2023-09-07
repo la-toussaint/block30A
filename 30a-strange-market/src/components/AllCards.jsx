@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 import { fetchAllPosts, deletePost } from "../API/ajax-helpers";
 import ReactCardFlip from "react-card-flip";
 import { useSelector } from "react-redux";
+import SearchBar from "./SearchBar";
 
 export default function AllCards() {
   const [posts, postList] = useState([]);
   const [error, setError] = useState(null);
   const [isFlipped, setFlipped] = useState({});
+  const [searchParam, setSearchParam] = useState(null);
   const navigate = useNavigate();
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -16,12 +18,20 @@ export default function AllCards() {
     fetchAllPosts().then((result) => postList(result));
   }, []);
 
+  useEffect(() => {
+    const filteredPosts = posts.filter((p) => {
+      return p?.title.toLowerCase().includes(searchParam);
+    });
+    postList(filteredPosts);
+  }, [searchParam]);
+
   const handleClick = (id) => {
     setFlipped({ ...isFlipped, [id]: !isFlipped[id] });
   };
 
   return (
     <div className="post-card-container">
+      <SearchBar setSearchParam={setSearchParam} />
       {posts.map((post) => (
         <div className="post-card" key={post._id}>
           <ReactCardFlip

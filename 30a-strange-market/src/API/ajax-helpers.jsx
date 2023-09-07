@@ -1,10 +1,10 @@
-import { useState, react } from "react";
+import { React, useState } from "react";
 import {
   BASE_URL_USER_ME,
   BASE_URL_POSTS,
   BASE_URL_USERS,
   BASE_URL_DELET,
-} from ".API/index";
+} from "./index";
 import { useSelector } from "react-redux";
 
 // export default function CreatePostForm({ posts, setPosts }) {
@@ -74,7 +74,7 @@ export const fetchProfile = async (token) => {
 
 export const deletePost = async (token, _id) => {
   try {
-    const response = await fetch(BASE_URL_DELET, {
+    const response = await fetch(`${BASE_URL_POSTS}/${_id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

@@ -10,7 +10,6 @@
 
 .nav {
   position: fixed;
-  z-index: 13;
   top: 0;
   width: 100%;
   height: 25px;
@@ -35,18 +34,17 @@
   max-width: 100%;
 }
 
-.search-bar {
-  position: absolute;
-  top: 30px;
-  z-index: 13;
-  padding-top: 5px;
-  margin-top: 35px;
-  margin-left: 50px;
-  width: 900px;
-  height: 25px;
-  border-radius: 10px;
-  background-color: linen;
-  border: 3px solid midnightblue;
+.search-bar-form {
+position: absolute;
+display: inline;
+padding-top: 5px;
+margin-top: 35px;
+margin-left: 50px;
+width: 900px;
+height: 25px;
+border-radius: 10px;
+background-color: linen;
+border: 3px solid midnightblue;
 }
 
 .post-card {
@@ -219,6 +217,7 @@
   border: 2px solid #ffffff;
 }
 
+
 .profile-log-item {
 
   display: inline-table;
@@ -238,7 +237,17 @@
   border-radius: 10px;
   overflow-y: scroll;
 }
+.profile-header {
+margin-left: 33%;
+margin-top: 100px;
+font: timesnewroman;
+font-size: 12pt;
+font-weight: bolder;
+line-height: 30pt;
+color: antiquewhite;	
 
+	
+}
 .profile-log-button {
   position: fixed;
   justify-content: center;

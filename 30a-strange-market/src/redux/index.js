@@ -15,10 +15,16 @@ export const authReducer = createSlice({
     }),
     setProfile: (state, action) => ({
       ...state,
-      profile: action.payload
-      
+      profile: action.payload,
+    }),
+    deletePostFromProfile: (state, action) => ({
+      ...state,
+      profile: {
+        ...profile,
+        posts: posts.filter((post) => post._id !== action.payload),
+      },
     }),
   },
 });
 
-export const { setToken, setProfile } = authReducer.actions;
+export const { setToken, setProfile, deletePostFromProfile } = authReducer.actions;
